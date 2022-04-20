@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  miopen-docker:
+    image: rocm/miopen-docker
+    devices:
+      - "/dev/kfd:/dev/kfd"
+      - "/dev/dri:/dev/dri"
+    security_opt:
+      - "seccomp:unconfined"
+    environment:
+      - ID=${ID}
+    restart: unless-stopped
+    tty: true
