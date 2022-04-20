@@ -23,13 +23,13 @@ RUN curl -sL -o boost_${BOOST_VERSION}.tar.gz https://boostorg.jfrog.io/artifact
 	&& tar xfz boost_${BOOST_VERSION}.tar.gz \
 	&& rm boost_${BOOST_VERSION}.tar.gz \
 	&& cd boost_${BOOST_VERSION} \
-	&& ./bootstrap.sh --prefix=/usr/local --with-libraries=program_options \
+	&& ./bootstrap.sh --prefix=/usr/local --with-libraries=filesystem \
 	&& ./b2 cxxflags=-fPIC cflags=-fPIC install \
 	&& cd .. \
 	&& rm -rf boost_${BOOST_VERSION}
 
-#RUN mkdir build \
-#	&& cd build \
-#	&& CXX=/opt/rocm/llvm/bin/clang++ cmake -DMIOPEN_GPU_SYNC=Off -DBUILD_DEV=On -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -G Ninja .. \
-#	&& ninja && ninja install
+RUN mkdir build \
+	&& cd build \
+	&& CXX=/opt/rocm/llvm/bin/clang++ cmake -DMIOPEN_GPU_SYNC=Off -DBUILD_DEV=On -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -G Ninja .. \
+	&& ninja && ninja install
 
