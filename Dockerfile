@@ -1,4 +1,4 @@
-FROM marcusmae/rocm-docker:latest
+FROM rocm-docker:latest
 MAINTAINER Dmitry Mikushin <dmitry@kernelgen.org>
 
 ENV CMAKE_BUILD_TYPE=Release
@@ -13,9 +13,9 @@ WORKDIR /MIOpen
 COPY ./git_checkout.sh .
 RUN bash ./git_checkout.sh
 
-RUN apt-get update && apt-get install -y --no-install-recommends ninja-build pkg-config libsqlite3-dev rocblas-dev libbz2-dev half curl
+RUN apt-get update && apt-get install -y --no-install-recommends ninja-build pkg-config libsqlite3-dev rocblas-dev libbz2-dev half curl wget ssh fish mc
 
-# Download, build and install Boost 1.72 (other versions are not supported)
+# Download, build and install Boost 1.72 (older versions are not supported)
 # to enable MIOpen persistent kernel cache
 ENV BOOST_VERSION=1_72_0
 ENV BOOST_ROOT=/usr/include/boost
