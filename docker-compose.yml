@@ -2,7 +2,8 @@ version: '3.3'
 
 services:
   miopen-docker:
-    image: rocm/miopen-docker
+    image: miopen-docker
+    hostname: miopen
     devices:
       - "/dev/kfd:/dev/kfd"
       - "/dev/dri:/dev/dri"
@@ -12,3 +13,5 @@ services:
       - ID=${ID}
     restart: unless-stopped
     tty: true
+    volumes:
+      - ./home:/home
