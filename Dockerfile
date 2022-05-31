@@ -33,3 +33,5 @@ RUN mkdir build \
 	&& CXX=/opt/rocm/llvm/bin/clang++ cmake -DMIOPEN_GPU_SYNC=Off -DBUILD_DEV=On -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -G Ninja .. \
 	&& ninja && ninja install
 
+RUN echo "/opt/rocm/rocblas/lib" >/etc/ld.so.conf.d/rocblas.conf && ldconfig
+
