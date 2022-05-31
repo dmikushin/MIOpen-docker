@@ -14,5 +14,5 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - /opt/amdgpu:/opt/amdgpu:rw
+      - /opt/amdgpu:/opt/amdgpu:ro
       - ./home:/home
